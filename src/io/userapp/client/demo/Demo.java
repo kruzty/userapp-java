@@ -2,6 +2,7 @@ package io.userapp.client.demo;
 
 import java.util.ArrayList;
 
+import io.userapp.client.IUserAppAPI;
 import io.userapp.client.UserApp;
 import io.userapp.client.exceptions.*;
 
@@ -22,7 +23,7 @@ public class Demo {
 			options.throwErrors = false;
 			UserApp.API api = new UserApp.API(options);*/
 			
-			UserApp.API api = new UserApp.API("YOUR-USERAPP-APP-ID");
+			IUserAppAPI api = new UserApp.API("YOUR-USERAPP-APP-ID");
 			
 			/*
 			 * Sign up a new user

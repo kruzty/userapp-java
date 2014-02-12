@@ -187,7 +187,7 @@ public class UserApp {
 	}
 
 	/* API wrapper class */
-	public static class API {
+	public static class API implements IUserAppAPI {
 		private UserApp.ClientOptions options;
 		RestfulContext restfulContext = new RestfulContext();
 		URI serviceUrl;
@@ -205,7 +205,7 @@ public class UserApp {
 		public API(UserApp.ClientOptions options) {
 			this.setOptions(options);
 		}
-		
+
 		public void setOptions(UserApp.ClientOptions options) {
 			this.options = options;
 			this.restfulContext.setBasicAuthenticationCredentials(new UserCredentials(
@@ -215,20 +215,20 @@ public class UserApp {
 				String.format("%s://%s/v%d/", (this.options.secure ? "https" : "http"), this.options.baseAddress, this.options.version)
 			);
 		}
-		
+
 		public UserApp.ClientOptions getOptions() {
 			return this.options;
 		}
 		
 		/* Set the API method */
-		public UserApp.API method(String name) {
+		public IUserAppAPI method(String name) {
 			this.methodName = name;
 			this.parameters.clear();
 			return this;
 		}
 		
 		/* Add an input parameter */
-		public UserApp.API parameter(String name, Object value) {
+		public IUserAppAPI parameter(String name, Object value) {
 			this.parameters.add(new UserApp.Parameter(name, value));
 			return this; 
 		}
